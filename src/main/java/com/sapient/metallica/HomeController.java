@@ -1,10 +1,10 @@
-package com.sapient.metallica.controller.view;
+package com.sapient.metallica;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class DashboardContoller {
+public class HomeController {
 
     @RequestMapping(value = "/")
     public String index() {
