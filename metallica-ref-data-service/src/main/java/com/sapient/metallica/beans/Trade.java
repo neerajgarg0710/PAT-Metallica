@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Trade {
 
+	private long tradeId;
 	private Side side;
 	private int quanity;
 	private Double price;

@@ -2,7 +2,6 @@ package com.sapient.metallica.controller.rest;
 
 import java.util.Collection;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sapient.metallica.beans.Commodity;
 import com.sapient.metallica.beans.CounterParty;
 import com.sapient.metallica.beans.Location;
+import com.sapient.metallica.beans.Trade;
+import com.sapient.metallica.beans.TradeVO;
 import com.sapient.metallica.util.TestData;
 
 @RestController
@@ -36,9 +37,11 @@ public class RefDataService {
       return TestData.getCommodities();
     }
 	
-	public static void main(String[] args)
+	@RequestMapping(value = "/trades")
+    public Collection<Trade> searchTrades(TradeVO tradeVo)    
     {
-        SpringApplication.run(RefDataService.class, args);
-    }
-	
+		
+      return null;
+    }	
+		
 }

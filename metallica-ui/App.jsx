@@ -5,30 +5,43 @@ import IconMenu from 'material-ui/IconMenu';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Avatar from 'material-ui/Avatar';
 import {Tabs, Tab} from 'material-ui/Tabs';
+import MenuItem from 'material-ui/MenuItem';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import DatePicker from 'material-ui/DatePicker';
+import Checkbox from 'material-ui/Checkbox';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+
+
+
 
 const style = {margin: 25};
 const labelStyle = {color: 'white'};
 
 const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
-  },
+    headline: {
+        fontSize: 24,
+        paddingTop: 16,
+        marginBottom: 12,
+        fontWeight: 400,
+    },
+
+    searchBar: {
+        display:'inline-block'
+    },
 };
 
 const Logged = (props) => (
-	<div>
-	<span style={labelStyle}>UserName</span>
-	<Avatar size={30} style={style}>
-	  A
-	</Avatar>
-	</div>
+    <div>
+    <span style={labelStyle}>UserName</span>
+    <Avatar size={30} style={style}>
+    A
+    </Avatar>
+    </div>
 );
 
 Logged.muiName = 'IconMenu';
 class App extends React.Component {
+<<<<<<< HEAD
   render() {
     return (
 	<MuiThemeProvider>
@@ -63,6 +76,58 @@ class App extends React.Component {
 	  </MuiThemeProvider>
     );
   }
+=======
+    render() {
+        return (
+            <MuiThemeProvider>
+            
+            <div>
+                <div>
+                    <AppBar title="Metallica App" iconElementRight={<Logged />}/>
+                </div>
+
+                <div>
+                    <Tabs>
+                        <Tab label="Trades" >
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <DatePicker hintText="From Date Input" onChange={this.handleChange} style={styles.searchBar}/>
+                                    <label>To</label>
+                                    <DatePicker hintText="To Date Input" onChange={this.handleChange} style={styles.searchBar}/>
+                                </div>
+            
+                                <div class="col-sm-5">
+                                    <DropDownMenu value={1} onChange={this.handleChange} style={styles.searchBar}>
+                                        <MenuItem value={1} primaryText="AL" />
+                                    </DropDownMenu>
+                                </div>
+            
+                                <div class="col-sm-2">
+                                    <Checkbox name="StylesOverridingInlineExample" label="Buy" style={styles.searchBar} />
+                                </div>
+                            </div>
+                        </Tab>
+
+                        //Transfer Tab
+                        <Tab label="Transfer" >
+                            <div>
+                                <h2 style={styles.headline}>This is out of scope for Full Stack development Excerise</h2>
+                            </div>
+                        </Tab>
+
+                        //Transport Tab
+                        < Tab label = "Transport" >
+                            <div>
+                                <h2 style={styles.headline}>This is out of scope for Full Stack development Excerise</h2>
+                            </div>
+                        </Tab>
+                    </Tabs>
+                </div>
+            </div>
+        </MuiThemeProvider>
+        );
+    }
+>>>>>>> 2becdda3d7af8448bc02e8e4ebbc8ce10d6040e6
 }
 
 export default App;

@@ -7,9 +7,27 @@ import java.util.List;
 import com.sapient.metallica.beans.Commodity;
 import com.sapient.metallica.beans.CounterParty;
 import com.sapient.metallica.beans.Location;
+import com.sapient.metallica.beans.Trade;
 
 public class TestData {
 
+	public static Collection<Trade> getTrades(){
+
+		
+		Commodity c1 = new Commodity("AL", "Aluminum");
+		Commodity c2 = new Commodity("ZN", "Zinc");
+		Commodity c3 = new Commodity("CU", "Copper");
+		Commodity c4 = new Commodity("AU", "Gold");
+		Commodity c5 = new Commodity("AG", "Silver");
+
+		CounterParty c1 = new CounterParty("Lorem", "Lorem");
+		CounterParty c2 = new CounterParty("Ipsum", "Ipsum");
+		CounterParty c3 = new CounterParty("Dolor", "Dolor");
+		CounterParty c4 = new CounterParty("Amet", "Amet");
+
+		return null;
+	}
+	
 	public static Collection<Commodity> getCommodities() {
 
 		Commodity c1 = new Commodity("AL", "Aluminum");
