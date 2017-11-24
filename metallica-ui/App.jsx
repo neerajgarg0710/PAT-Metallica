@@ -40,7 +40,7 @@ class App extends React.Component {
       </div>
 	  <div>
 	  
-	  <Tabs style={}>
+	  <Tabs>
     <Tab label="Trades" >
       <div>
         <h2 style={styles.headline}>Trades</h2>
