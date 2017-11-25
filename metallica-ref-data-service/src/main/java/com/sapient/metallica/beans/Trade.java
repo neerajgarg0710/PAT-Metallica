@@ -3,6 +3,8 @@ package com.sapient.metallica.beans;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.sapient.metallica.util.TestData;
+
 public class Trade {
 
 	private Long tradeId;
@@ -15,7 +17,10 @@ public class Trade {
 	private CounterParty counterParty;
 	private Location location;
 
-	private static AtomicLong tradeIdVal = new AtomicLong(1101);
+	public Trade() {
+		this.tradeId = TestData.getNextTradeId();
+		this.status = TradeStatus.OPEN;
+	}
 
 	public Trade(Side side, int quanity, Double price, Date tradeDate, TradeStatus status) {
 
@@ -24,7 +29,7 @@ public class Trade {
 		this.price = price;
 		this.tradeDate = tradeDate;
 		this.status = status;
-		this.tradeId = tradeIdVal.getAndIncrement();
+		this.tradeId = TestData.getNextTradeId();
 	}
 
 	public Long getTradeId() {

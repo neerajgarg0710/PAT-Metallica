@@ -15,9 +15,6 @@ import org.springframework.context.annotation.Bean;
 
 import com.sapient.metallica.message.Receiver;
 
-
-
-
 @SpringBootApplication
 public class MetallicaServiceApplication {
 
@@ -25,34 +22,35 @@ public class MetallicaServiceApplication {
 		SpringApplication.run(MetallicaServiceApplication.class, args);
 	}
 
-	public static final String queueName="metallica-queue";
-	
+	public static final String queueName = "metallica-queue";
+
 	@Bean
-	Queue queue(){
+	Queue queue() {
 		return new Queue(queueName, false);
 	}
-	
+
 	@Bean
-	TopicExchange exchange(){
+	TopicExchange exchange() {
 		return new TopicExchange("metallica-exchange");
 	}
-	
-	@Bean 
-	Binding binding(Queue queue, TopicExchange exchange){
+
+	@Bean
+	Binding binding(Queue queue, TopicExchange exchange) {
 		return BindingBuilder.bind(queue).to(exchange).with(queueName);
 	}
-	
+
 	@Bean
-	SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, MessageListener messageListener){
-		SimpleMessageListenerContainer msgContainer = new SimpleMessageListenerContainer();
-		msgContainer.setConnectionFactory(connectionFactory);
-		msgContainer.setMessageListener(messageListener);
-		msgContainer.setQueueNames(queueName);
-		return msgContainer;		
+	SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
+			MessageListenerAdapter listenerAdapter) {
+		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+		container.setConnectionFactory(connectionFactory);
+		container.setQueueNames(queueName);
+		container.setMessageListener(listenerAdapter);
+		return container;
 	}
-	
+
 	@Bean
-	MessageListenerAdapter listenerAdapter(Receiver receiver){
-		return new MessageListenerAdapter(receiver, "receiveMessage");			
+	MessageListenerAdapter listenerAdapter(Receiver receiver) {
+		return new MessageListenerAdapter(receiver, "receiveMessage");
 	}
 }

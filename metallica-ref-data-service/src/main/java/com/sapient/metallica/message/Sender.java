@@ -28,7 +28,7 @@ public class Sender implements CommandLineRunner {
         System.out.println("Sending message...");
         rabbitTemplate.convertAndSend(MetallicaServiceApplication.queueName, "Hello from RabbitMQ!");
         receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
-        context.close();
+        //context.close();
     }
 
 }

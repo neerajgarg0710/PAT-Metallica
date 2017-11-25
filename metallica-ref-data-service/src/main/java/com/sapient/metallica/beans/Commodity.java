@@ -11,6 +11,10 @@ public class Commodity {
 		this.description = description;
 	}
 
+	public Commodity(String commodity) {
+		this.code = code;
+	}
+
 	public String getCode() {
 		return code;
 	}

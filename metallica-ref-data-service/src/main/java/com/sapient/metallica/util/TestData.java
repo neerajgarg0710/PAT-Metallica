@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 import com.sapient.metallica.beans.Commodity;
 import com.sapient.metallica.beans.CounterParty;
@@ -15,7 +18,10 @@ import com.sapient.metallica.beans.TradeStatus;
 
 public class TestData {
 
-	public static Collection<Trade> getTrades() {
+	private static Map<Long, Trade> trades = new ConcurrentHashMap<>();
+	public static AtomicLong tradeIdVal = new AtomicLong(1101);
+
+	static {
 
 		Trade t1 = new Trade(Side.BUY, 50, 100.00, new Date(2017, 10, 20), TradeStatus.OPEN);
 		t1.setCommodity(new Commodity("AL", "Aluminum"));
@@ -42,13 +48,22 @@ public class TestData {
 		t5.setCounterParty(new CounterParty("Dolor", "Dolor"));
 		t5.setLocation(new Location("NY", "New York"));
 
-		List<Trade> trades = new ArrayList<Trade>();
-		trades.add(t1);
-		trades.add(t2);
-		trades.add(t3);
-		trades.add(t4);
-		trades.add(t5);
-		return trades;
+		trades.put(t1.getTradeId(), t1);
+		trades.put(t2.getTradeId(), t2);
+		trades.put(t3.getTradeId(), t3);
+		trades.put(t4.getTradeId(), t4);
+		trades.put(t5.getTradeId(), t5);
+
+	}
+
+	public static Long getNextTradeId() {
+
+		return tradeIdVal.getAndIncrement();
+	}
+
+	public static Collection<Trade> getAllTrades() {
+
+		return trades.values();
 	}
 
 	public static Collection<Commodity> getCommodities() {
@@ -99,5 +114,13 @@ public class TestData {
 		list.add(c4);
 
 		return list;
+	}
+
+	public static Map<Long, Trade> getTradeMap() {
+		return trades;
+	}
+
+	public static Trade getTrade(Long id) {
+		return trades.get(id);
 	}
 }

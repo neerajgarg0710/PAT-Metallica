@@ -11,6 +11,10 @@ public class Location {
 		this.description=description;
 	}
 
+	public Location(String location) {
+		this.code = code;
+	}
+
 	public String getCode() {
 		return code;
 	}

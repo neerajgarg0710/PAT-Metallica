@@ -11,6 +11,10 @@ public class CounterParty {
 		this.description=description;
 	}
 
+	public CounterParty(String counterParty) {
+		this.code = code;
+	}
+
 	public String getCode() {
 		return code;
 	}

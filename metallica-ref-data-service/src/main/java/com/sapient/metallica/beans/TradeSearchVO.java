@@ -3,7 +3,7 @@ package com.sapient.metallica.beans;
 import java.sql.Date;
 import java.util.List;
 
-public class TradeDTO {
+public class TradeSearchVO {
 
 	private Date fromDate;
 	private Date toDate;
@@ -67,7 +67,7 @@ public class TradeDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TradeDTO other = (TradeDTO) obj;
+		TradeSearchVO other = (TradeSearchVO) obj;
 		if (commodity == null) {
 			if (other.commodity != null)
 				return false;
