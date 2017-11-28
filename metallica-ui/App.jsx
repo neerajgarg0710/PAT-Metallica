@@ -213,11 +213,12 @@ return (
                      </form>
                   </div>
                </Paper>
-               <div class="row">
-                  <div class="col-sm-9">
-                     <Paper style={paperForTable} zDepth={1} >
+               
+                  
+                     <Paper style={paperForTable} zDepth={1} class="col-sm-7" >
+                        
                         <Table>
-                           <TableHeader displaySelectAll={false}>
+                           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                               <TableRow>
                                  <TableHeaderColumn>Trade Date</TableHeaderColumn>
                                  <TableHeaderColumn>Commodity</TableHeaderColumn>
@@ -243,10 +244,10 @@ return (
                               ))}
                            </TableBody>
                         </Table>
+                           
                      </Paper>
-                  </div>
-                  <div class="col-sm-3">
-                     <Paper style={paperForSidePanel} zDepth={1} >
+                  
+                     <Paper style={paperForSidePanel} zDepth={1} class="col-sm-4">
                         <form>
                            <div class="col-sm-1">
                               <DropDownMenu value={1} onChange={this.handleChange} style={styles.searchBar}>
@@ -255,17 +256,16 @@ return (
                            </div>
                         </form>
                      </Paper>
-                  </div>
-               </div>
+               
             </Tab>
             //Transfer Tab
-            <Tab label="Transfer" style={{backgroundColor:'#ffffff'}} >
+            <Tab label="Transfers" style={{backgroundColor:'#ffffff'}} >
                <div>
                   <h2 style={styles.headline}>This is out of scope for Full Stack development Excerise</h2>
                </div>
             </Tab>
             //Transport Tab
-            < Tab label = "Transport" style={{backgroundColor:'#ffffff'}} >
+            < Tab label = "Transports" style={{backgroundColor:'#ffffff'}} >
             <div>
                <h2 style={styles.headline}>This is out of scope for Full Stack development Excerise</h2>
             </div>
