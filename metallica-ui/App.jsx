@@ -42,6 +42,42 @@ const Logged = (props) => (
 
 Logged.muiName = 'IconMenu';
 class App extends React.Component {
+<<<<<<< HEAD
+  render() {
+    return (
+	<MuiThemeProvider>
+      <div>
+        <AppBar
+          title="Metallica App"
+          iconElementRight={<Logged />}
+        />
+      </div>
+	  <div>
+	  
+	  <Tabs>
+    <Tab label="Trades" >
+      <div>
+        <h2 style={styles.headline}>Trades</h2>
+      </div>
+    </Tab>
+	<Tab label="Transfer" >
+      <div>
+        <h2 style={styles.headline}>Transfer</h2>
+      </div>
+    </Tab>
+	<Tab label="Transport" >
+      <div>
+        <h2 style={styles.headline}>Transport</h2>
+      </div>
+    </Tab>
+	</Tabs>
+	  
+	  
+	  </div>
+	  </MuiThemeProvider>
+    );
+  }
+=======
     render() {
         return (
             <MuiThemeProvider>
@@ -130,6 +166,7 @@ class App extends React.Component {
         </MuiThemeProvider>
         );
     }
+>>>>>>> 2becdda3d7af8448bc02e8e4ebbc8ce10d6040e6
 }
 
 export default App;
