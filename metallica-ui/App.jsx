@@ -10,12 +10,39 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import DatePicker from 'material-ui/DatePicker';
 import Checkbox from 'material-ui/Checkbox';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import Paper from 'material-ui/Paper';
+    
 
-
-
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 const style = {margin: 25};
 const labelStyle = {color: 'white'};
+
+const paperStyle = {
+  height: 100,
+  width: '98%',
+  margin: 10,
+  display: 'inline-block',
+};
+
+const paperForTable = {
+  height: '100%',
+  margin: 10,
+  display: 'inline-block',
+};
+
+const paperForSidePanel = {
+  height: '100%',
+  margin: 10,
+  display: 'inline-block',
+};
 
 const styles = {
     headline: {
@@ -29,6 +56,11 @@ const styles = {
         display:'inline-block',
         width:'auto'
     },
+    
+    gridList: {
+        width: '60%',
+        overflowY: 'auto',
+  }
 };
 
 const Logged = (props) => (
@@ -40,44 +72,72 @@ const Logged = (props) => (
     </div>
 );
 
+const tableData = [
+  {
+        "tradeId": 1101,
+        "side": "BUY",
+        "quanity": 50,
+        "price": 100,
+        "tradeDate": 61469260200000,
+        "status": "OPEN",
+        "commodity": {
+            "code": "AL",
+            "description": "Aluminum"
+        },
+        "counterParty": {
+           "code": "Lorem",
+            "description": "Lorem"
+        },
+        "location": {
+            "code": "LN",
+            "description": "London"
+        }
+    },
+    {
+        "tradeId": 1102,
+        "side": "SELL",
+        "quanity": 50,
+        "price": 100,
+        "tradeDate": 61469260200000,
+        "status": "NOMINATED",
+        "commodity": {
+            "code": "AL",
+            "description": "Aluminum"
+        },
+        "counterParty": {
+            "code": "Lorem",
+            "description": "Lorem"
+        },
+        "location": {
+            "code": "LN",
+            "description": "London"
+        }
+    },
+    {
+        "tradeId": 1103,
+        "side": "SELL",
+        "quanity": 30,
+        "price": 125,
+        "tradeDate": 61469346600000,
+        "status": "OPEN",
+        "commodity": {
+            "code": "AL",
+            "description": "Aluminum"
+        },
+        "counterParty": {
+            "code": "Lorem",
+            "description": "Lorem"
+        },
+        "location": {
+            "code": "LN",
+            "description": "London"
+        }
+    }
+
+];
+
 Logged.muiName = 'IconMenu';
 class App extends React.Component {
-<<<<<<< HEAD
-  render() {
-    return (
-	<MuiThemeProvider>
-      <div>
-        <AppBar
-          title="Metallica App"
-          iconElementRight={<Logged />}
-        />
-      </div>
-	  <div>
-	  
-	  <Tabs>
-    <Tab label="Trades" >
-      <div>
-        <h2 style={styles.headline}>Trades</h2>
-      </div>
-    </Tab>
-	<Tab label="Transfer" >
-      <div>
-        <h2 style={styles.headline}>Transfer</h2>
-      </div>
-    </Tab>
-	<Tab label="Transport" >
-      <div>
-        <h2 style={styles.headline}>Transport</h2>
-      </div>
-    </Tab>
-	</Tabs>
-	  
-	  
-	  </div>
-	  </MuiThemeProvider>
-    );
-  }
-=======
     render() {
         return (
             <MuiThemeProvider>
@@ -90,6 +150,8 @@ class App extends React.Component {
                 <div>
                     <Tabs>
                         <Tab label="Trades" >
+            
+                        <Paper style={paperStyle} zDepth={1} >
                             <div class="row">
                                 <div class="col-sm-5">
                                     
@@ -145,6 +207,67 @@ class App extends React.Component {
                                     </DropDownMenu>
                                 </div>
                             </div>
+                            </Paper>
+      
+            
+            <div class="row">
+            <div class="col-sm-9">
+            
+   <Paper style={paperForTable} zDepth={1} >         
+<Table>
+    <TableHeader displaySelectAll={false}>
+      <TableRow>
+        <TableHeaderColumn>Trade Date</TableHeaderColumn>
+        <TableHeaderColumn>Commodity</TableHeaderColumn>
+        <TableHeaderColumn>Side</TableHeaderColumn>
+            
+            <TableHeaderColumn>Qty(MT)</TableHeaderColumn>
+        <TableHeaderColumn>Price(/MT)</TableHeaderColumn>
+        <TableHeaderColumn>Counterparty</TableHeaderColumn>
+        <TableHeaderColumn>Location</TableHeaderColumn>
+            
+      </TableRow>
+    </TableHeader>
+    <TableBody displayRowCheckbox={false}>
+                                 
+                                 
+     {tableData.map((data) => (
+             <TableRow key={data.tradeId}>>
+        <TableRowColumn>{data.tradeDate}</TableRowColumn>
+        <TableRowColumn>{data.commodity.code}</TableRowColumn>
+        <TableRowColumn>{data.side}</TableRowColumn>
+        <TableRowColumn>{data.quanity}</TableRowColumn>
+        <TableRowColumn>{data.price}</TableRowColumn>
+        <TableRowColumn>{data.counterParty.code}</TableRowColumn>
+        <TableRowColumn>{data.location.code}</TableRowColumn>
+                                 
+      </TableRow>
+            
+      ))}
+    
+     
+     
+    </TableBody>
+  </Table>
+    </Paper>
+    </div>
+    <div class="col-sm-3">
+    <Paper style={paperForSidePanel} zDepth={1} >
+        
+              <form>
+                                       <div class="col-sm-1">
+                                    <DropDownMenu value={1} onChange={this.handleChange} style={styles.searchBar}>
+                                        <MenuItem value={1} primaryText="AL" />
+                                    </DropDownMenu>
+                                </div>
+            </form>
+          
+        </Paper>
+    </div>
+    </div>
+    
+    
+
                         </Tab>
 
                         //Transfer Tab
@@ -166,7 +289,6 @@ class App extends React.Component {
         </MuiThemeProvider>
         );
     }
->>>>>>> 2becdda3d7af8448bc02e8e4ebbc8ce10d6040e6
 }
 
 export default App;
