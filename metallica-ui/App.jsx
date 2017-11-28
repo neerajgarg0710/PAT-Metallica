@@ -14,7 +14,6 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-    
 import {
 Table,
 TableBody,
@@ -140,12 +139,12 @@ render() {
 return (
 <MuiThemeProvider>
    <div>
-      <div>
+      <div style={{height: '14vh'}}>
          <AppBar title="Metallica App" iconElementRight={
          <Logged />
          } style={{backgroundColor:'#BFBFBF'}}/>
       </div>
-      <div>
+      <div style={{height: '86vh'}}>
          <Tabs inkBarStyle={{backgroundColor:'#BFBFBF'}} style={{backgroundColor:'#ffffff'}} contentContainerStyle={{backgroundColor:'#F5F5F5'}} >
             <Tab label="Trades" style={{backgroundColor:'#ffffff'}} >
                <Paper style={paperStyle} zDepth={1} >
