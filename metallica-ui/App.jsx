@@ -26,7 +26,8 @@ const styles = {
     },
 
     searchBar: {
-        display:'inline-block'
+        display:'inline-block',
+        width:'auto'
     },
 };
 
@@ -55,19 +56,57 @@ class App extends React.Component {
                         <Tab label="Trades" >
                             <div class="row">
                                 <div class="col-sm-5">
+                                    
+                                    <label>Trade Date</label>
+                                    
+                                </div>
+            
+                                <div class="col-sm-1">
+                                    <label>Commodity</label>
+
+                                </div>
+            
+                                <div class="col-sm-2">
+                                    <label>Side</label>
+                                </div>
+            
+                                <div class="col-sm-2">
+                                   <label>Counterparty</label>
+                                </div>
+                                
+                                <div class="col-sm-2">
+                                    <label>Location</label>
+                                </div>
+                            </div>
+            
+                            <div class="row">
+                                <div class="col-sm-5">
                                     <DatePicker hintText="From Date Input" onChange={this.handleChange} style={styles.searchBar}/>
                                     <label>To</label>
                                     <DatePicker hintText="To Date Input" onChange={this.handleChange} style={styles.searchBar}/>
                                 </div>
             
-                                <div class="col-sm-5">
+                                <div class="col-sm-1">
                                     <DropDownMenu value={1} onChange={this.handleChange} style={styles.searchBar}>
                                         <MenuItem value={1} primaryText="AL" />
                                     </DropDownMenu>
                                 </div>
             
                                 <div class="col-sm-2">
-                                    <Checkbox name="StylesOverridingInlineExample" label="Buy" style={styles.searchBar} />
+                                    <Checkbox name="StylesOverridingInlineExample" label="Buy" style={styles.searchBar}  inputStyle=            {styles.searchBar}/>
+                                    <Checkbox name="StylesOverridingInlineExample" label="Sell" style={styles.searchBar}  inputStyle={styles.searchBar} />
+                                </div>
+            
+                                <div class="col-sm-2">
+                                    <DropDownMenu value={1} onChange={this.handleChange} style={styles.searchBar}>
+                                        <MenuItem value={1} primaryText="Dolor" />
+                                    </DropDownMenu>
+                                </div>
+                                
+                                <div class="col-sm-2">
+                                    <DropDownMenu value={1} onChange={this.handleChange} style={styles.searchBar}>
+                                        <MenuItem value={1} primaryText="BA" />
+                                    </DropDownMenu>
                                 </div>
                             </div>
                         </Tab>
