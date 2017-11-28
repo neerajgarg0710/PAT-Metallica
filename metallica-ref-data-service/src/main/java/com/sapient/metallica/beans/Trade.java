@@ -1,12 +1,14 @@
 package com.sapient.metallica.beans;
 
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.data.annotation.Id;
 
 import com.sapient.metallica.util.TestData;
 
 public class Trade {
 
+	@Id
 	private Long tradeId;
 	private Side side;
 	private int quanity;

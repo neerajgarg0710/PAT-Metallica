@@ -8,11 +8,15 @@ public class Location {
 	public Location(String code, String description) {
 
 		this.code = code;
-		this.description=description;
+		this.description = description;
 	}
 
 	public Location(String location) {
-		this.code = code;
+		this.code = location;
+	}
+
+	public Location() {
+
 	}
 
 	public String getCode() {

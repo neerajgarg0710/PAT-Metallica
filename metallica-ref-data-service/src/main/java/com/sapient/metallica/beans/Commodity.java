@@ -12,7 +12,10 @@ public class Commodity {
 	}
 
 	public Commodity(String commodity) {
-		this.code = code;
+		this.code = commodity;
+	}
+
+	public Commodity() {
 	}
 
 	public String getCode() {

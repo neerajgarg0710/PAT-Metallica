@@ -1,10 +1,12 @@
 package com.sapient.metallica.controller.rest;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import com.sapient.metallica.beans.Trade;
 import com.sapient.metallica.beans.TradeSearchVO;
 import com.sapient.metallica.beans.TradeStatus;
 import com.sapient.metallica.beans.TradeVO;
+import com.sapient.metallica.repository.TradeRepository;
 import com.sapient.metallica.util.MetallicaConstants;
 import com.sapient.metallica.util.MetallicaUtil;
 import com.sapient.metallica.util.TestData;
@@ -27,11 +30,14 @@ import com.sapient.metallica.util.TestData;
 @RestController
 @SpringBootApplication
 public class TradeService {
+	
+	@Autowired
+	private TradeRepository repository;
 
 	@RequestMapping(value = "/trades", method = RequestMethod.GET)
 	public Collection<Trade> getAllTrades() {
-
-		return TestData.getAllTrades();
+		
+		return repository.findAll();
 	}
 
 	@RequestMapping(value = "/trades", method = RequestMethod.POST)
@@ -47,23 +53,19 @@ public class TradeService {
 			trade.setQuanity(dto.getQuanity());
 			trade.setSide(Side.valueOf(dto.getSide()));
 			trade.setTradeDate(MetallicaUtil.parseDate(dto.getDate(), MetallicaConstants.DD_MM_YY));
-			Map<Long, Trade> trades = TestData.getTradeMap();
-			trades.put(trade.getTradeId(), trade);
+			repository.save(trade);
 		}
 	}
 
 	@RequestMapping(value = "/trades/{id}/{status}", method = RequestMethod.PUT)
 	public void udpateTrade(@RequestParam Long id, @RequestParam String status) {
 
-		Trade trade = TestData.getTrade(id);
-		if (trade != null) {
-			trade.setStatus(TradeStatus.valueOf(status));
-		}
+		//TODO:
 	}
 
 	@RequestMapping(value = "/trades/search", method = RequestMethod.POST)
 	public Collection<Trade> searchTrades(@RequestBody final TradeSearchVO dto) {
-		Collection<Trade> trades = TestData.getAllTrades();
+		Collection<Trade> trades = repository.findAll();
 
 		List<Trade> tradeList = trades.stream().filter(trade -> isMeetSearchCrietria(dto, trade))
 				.collect(Collectors.toList());

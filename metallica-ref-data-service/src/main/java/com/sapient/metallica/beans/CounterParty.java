@@ -12,7 +12,11 @@ public class CounterParty {
 	}
 
 	public CounterParty(String counterParty) {
-		this.code = code;
+		this.code = counterParty;
+	}
+	
+	public CounterParty() {
+		
 	}
 
 	public String getCode() {
