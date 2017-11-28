@@ -156,7 +156,7 @@ return (
                                  <label>Trade Date</label>
                                  <div>
                                     <DatePicker onChange={this.handleChange} style={styles.searchBar} textFieldStyle={{width:'130px'}}/>
-                                    <label>To</label>
+                                    <label style={{paddingRight:'10px',paddingLeft:'10px'}}>to</label>
                                     <DatePicker onChange={this.handleChange} style={styles.searchBar} textFieldStyle={{width:'130px'}}/>
                                  </div>
                               </div>
