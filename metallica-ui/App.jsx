@@ -134,7 +134,31 @@ const tableData = [
 }
 ];
 Logged.muiName = 'IconMenu';
+
 class App extends React.Component {
+    
+    
+constructor() {
+    super();
+    this.state={counterparties:[],commodities:[],locations:[]};
+}
+
+componentDidMount(){    
+
+ fetch(`http://localhost:8090/counterparties`)
+.then(result=>result.json())
+.then(counterparties=>this.setState({counterparties}))
+  
+fetch(`http://localhost:8090/locations`)
+.then(result=>result.json())
+.then(locations=>this.setState({locations}))
+  
+fetch(`http://localhost:8090/commodities`)
+.then(result=>result.json())
+.then(commodities=>this.setState({commodities}))
+
+}
+    
 render() {
 return (
 <MuiThemeProvider>
@@ -166,7 +190,7 @@ return (
                                  <label>Commodity</label>
                                  <div>
                                     <DropDownMenu value={1} onChange={this.handleChange} style={{height:'40px'}}>
-                                       <MenuItem value={1} primaryText="AL" />
+                                        {this.state.commodities.map(commoditie=><MenuItem value={1} primaryText={commoditie.code}/>)}
                                     </DropDownMenu>
                                  </div>
                               </div>
@@ -185,7 +209,7 @@ return (
                                  <label>Counterparty</label>
                                  <div>
                                     <DropDownMenu value={1} onChange={this.handleChange} style={{height:'40px'}}>
-                                       <MenuItem value={1} primaryText="AL" />
+                                       {this.state.counterparties.map(counterparty=><MenuItem value={1} primaryText={counterparty.code}/>)}
                                     </DropDownMenu>
                                  </div>
                               </div>
@@ -195,7 +219,7 @@ return (
                                  <label>Location</label>
                                  <div>
                                     <DropDownMenu value={1} onChange={this.handleChange} style={{height:'40px'}}>
-                                       <MenuItem value={1} primaryText="AL" />
+                                       {this.state.locations.map(location=><MenuItem value={1} primaryText={location.code}/>)}
                                     </DropDownMenu>
                                  </div>
                               </div>
