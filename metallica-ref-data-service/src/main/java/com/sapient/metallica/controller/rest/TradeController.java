@@ -22,6 +22,7 @@ import com.sapient.metallica.beans.Trade;
 import com.sapient.metallica.beans.TradeSearchVO;
 import com.sapient.metallica.beans.TradeStatus;
 import com.sapient.metallica.beans.TradeVO;
+import com.sapient.metallica.message.TradeService;
 import com.sapient.metallica.repository.TradeRepository;
 import com.sapient.metallica.util.MetallicaConstants;
 import com.sapient.metallica.util.MetallicaUtil;
@@ -29,10 +30,13 @@ import com.sapient.metallica.util.TestData;
 
 @RestController
 @SpringBootApplication
-public class TradeService {
+public class TradeController {
 	
 	@Autowired
 	private TradeRepository repository;
+	
+	@Autowired
+	private TradeService tradeService;
 
 	@RequestMapping(value = "/trades", method = RequestMethod.GET)
 	public Collection<Trade> getAllTrades() {
@@ -43,17 +47,9 @@ public class TradeService {
 	@RequestMapping(value = "/trades", method = RequestMethod.POST)
 	public void createTrade(@RequestBody TradeVO dto) {
 
+		
 		if (dto != null) {
-
-			Trade trade = new Trade();
-			trade.setCommodity(new Commodity(dto.getCommodity()));
-			trade.setCounterParty(new CounterParty(dto.getCounterParty()));
-			trade.setLocation(new Location(dto.getLocation()));
-			trade.setPrice(dto.getPrice());
-			trade.setQuanity(dto.getQuanity());
-			trade.setSide(Side.valueOf(dto.getSide()));
-			trade.setTradeDate(MetallicaUtil.parseDate(dto.getDate(), MetallicaConstants.DD_MM_YY));
-			repository.save(trade);
+			tradeService.createTrade(dto);
 		}
 	}
 
