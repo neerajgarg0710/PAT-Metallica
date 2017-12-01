@@ -13,6 +13,10 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+
 
 import {
 Table,
@@ -272,11 +276,41 @@ return (
                   
                      <Paper style={paperForSidePanel} zDepth={1} class="col-sm-4">
                         <form>
-                           <div class="col-sm-1">
-                              <DropDownMenu value={1} onChange={this.handleChange} style={styles.searchBar}>
-                                 <MenuItem value={1} primaryText="AL" />
-                              </DropDownMenu>
+                            <div>
+                              <div>
+                                 TradeDate:<TextField id="tradedate" label="commodity"/>
+                              </div>
+							  <div>
+                                 Commodity:<TextField id="commodity" label="commodity"/>
+                              </div>
+							  <div>
+                                 Side:<RadioButtonGroup name="side" defaultSelected="buy">
+									  <RadioButton value="buy" label="Buy" style={styles.radioButton}/>
+									  <RadioButton value="sell" label="Sell" style={styles.radioButton}/>
+									</RadioButtonGroup>
+                              </div>
+							  <div>
+                                 Counterparty:<TextField id="commodity" label="commodity"/>
+                              </div>
+							  <div>
+                                 Price:<TextField id="commodity" label="commodity"/>
+                              </div>
+							  <div>
+                                 Quantity:<TextField id="commodity" label="commodity"/>
+                              </div>
+							  <div>
+                                 Location:<TextField id="commodity" label="commodity"/>
+                              </div>
                            </div>
+						  <div class="row">
+                            <div class="col-sm-12">
+                                  <div class="form-group" style={{float:'right'}}>
+                                    <RaisedButton label="Clear" style={{marginLeft: 12}}/>
+                                    <RaisedButton label="Search" style={{marginLeft: 12}}/>
+                                  </div>
+                            </div>
+                        </div>
+						   
                         </form>
                      </Paper>
                
