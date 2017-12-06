@@ -50,20 +50,24 @@ display: 'inline-block',
 };
 
 const styles = {
-headline: {
-fontSize: 24,
-paddingTop: 16,
-marginBottom: 12,
-fontWeight: 400,
-},
-searchBar: {
-display:'inline-block',
-width:'auto'
-},
-gridList: {
-width: '60%',
-overflowY: 'auto',
-}
+	headline: {
+		fontSize: 24,
+		paddingTop: 16,
+		marginBottom: 12,
+		fontWeight: 400,
+	},
+	searchBar: {
+		display:'inline-block',
+		width:'auto'
+	},
+	gridList: {
+		width: '60%',
+		overflowY: 'auto',
+	},
+	radioButton:{
+        display:'inline-block',
+        width: '50%',
+    }
 };
 
 const Logged = (props) => (
@@ -273,45 +277,89 @@ return (
                         </Table>
                            
                      </Paper>
-                  
-                     <Paper style={paperForSidePanel} zDepth={1} class="col-sm-4">
+                  <Paper style={paperForSidePanel} zDepth={1} class="col-sm-4">
+					<AppBar title="TradeId:" showMenuIconButton={false} style={{backgroundColor:'#BFBFBF'}} i/>
                         <form>
-                            <div>
-                              <div>
-                                 TradeDate:<TextField id="tradedate" label="commodity"/>
-                              </div>
-							  <div>
-                                 Commodity:<TextField id="commodity" label="commodity"/>
-                              </div>
-							  <div>
-                                 Side:<RadioButtonGroup name="side" defaultSelected="buy">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label>Trade Date</label>
+                                </div>
+                                <div class="col-sm-8">
+                                   <DatePicker onChange={this.handleChange} style={styles.searchBar} textFieldStyle={{width:'130px'}}/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label>Commodity</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <DropDownMenu>
+										{this.state.commodities.map(commoditie=><MenuItem value={1} primaryText={commoditie.code}/>)}
+									</DropDownMenu>
+                                </div>
+                            </div>
+                                
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label>Side</label>
+                                </div>
+                                <div class="col-sm-6">
+                                     <RadioButtonGroup name="side" defaultSelected="buy">
 									  <RadioButton value="buy" label="Buy" style={styles.radioButton}/>
 									  <RadioButton value="sell" label="Sell" style={styles.radioButton}/>
 									</RadioButtonGroup>
-                              </div>
-							  <div>
-                                 Counterparty:<TextField id="commodity" label="commodity"/>
-                              </div>
-							  <div>
-                                 Price:<TextField id="commodity" label="commodity"/>
-                              </div>
-							  <div>
-                                 Quantity:<TextField id="commodity" label="commodity"/>
-                              </div>
-							  <div>
-                                 Location:<TextField id="commodity" label="commodity"/>
-                              </div>
-                           </div>
-						  <div class="row">
-                            <div class="col-sm-12">
-                                  <div class="form-group" style={{float:'right'}}>
-                                    <RaisedButton label="Clear" style={{marginLeft: 12}}/>
-                                    <RaisedButton label="Search" style={{marginLeft: 12}}/>
-                                  </div>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label>Counterparty</label>
+                                </div>
+                                <div class="col-sm-4">
+                                   <DropDownMenu>
+									{this.state.counterparties.map(counterparty=><MenuItem value={1} primaryText={counterparty.code}/>)}
+								   </DropDownMenu>
+                                </div>
                             </div>
-                        </div>
-						   
-                        </form>
+							<div class="row">
+                                <div class="col-sm-4">
+                                    <label>Price</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <TextField fullWidth="false" >
+									</TextField>									
+                                </div>
+								<div class="col-sm-4">
+                                    <label>USD</label>
+                                </div>
+                            </div>
+							<div class="row">
+                                <div class="col-sm-4">
+                                    <label>Quantity</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <TextField fullWidth="false">
+									</TextField>
+                                </div>
+                            </div>
+							<div class="row">
+                                <div class="col-sm-4">
+                                    <label>Location</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <DropDownMenu>
+									{this.state.locations.map(location=><MenuItem value={1} primaryText={location.code}/>)}
+								   </DropDownMenu>
+                                </div>
+                            </div>
+							<div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group" style={{float:'right'}}>
+										<RaisedButton label="Cancel" style={{marginLeft: 12}}/>
+										<RaisedButton label="Save" style={{marginLeft: 12}}/>
+                                  </div>
+                                </div>                               
+                            </div>
+                         </form>
                      </Paper>
                
             </Tab>
