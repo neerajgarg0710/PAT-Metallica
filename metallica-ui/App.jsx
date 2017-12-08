@@ -278,8 +278,18 @@ return (
                            
                      </Paper>
                   <Paper style={paperForSidePanel} zDepth={1} class="col-sm-4">
-					<AppBar title="TradeId:" showMenuIconButton={false} style={{backgroundColor:'#BFBFBF'}} i/>
+					
+
                         <form>
+                            <div class="row" style={{backgroundColor:'#BFBFBF',marginBottom:'20px',height:'40px',paddingTop:'10px'}}>
+                                <div class="col-sm-9">
+                                    <label>Trade ID: 867442</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="material-icons">mode_edit</i>&nbsp;&nbsp;
+                                    <i class="material-icons">delete</i>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label>Trade Date</label>
