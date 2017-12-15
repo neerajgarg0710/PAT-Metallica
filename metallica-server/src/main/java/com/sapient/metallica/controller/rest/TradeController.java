@@ -1,23 +1,35 @@
 package com.sapient.metallica.controller.rest;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sapient.metallica.beans.Commodity;
+import com.sapient.metallica.beans.CounterParty;
+import com.sapient.metallica.beans.Location;
+import com.sapient.metallica.beans.Side;
 import com.sapient.metallica.beans.Trade;
 import com.sapient.metallica.beans.TradeSearchVO;
+import com.sapient.metallica.beans.TradeStatus;
 import com.sapient.metallica.beans.TradeVO;
 import com.sapient.metallica.message.TradeService;
 import com.sapient.metallica.repository.TradeRepository;
+import com.sapient.metallica.util.MetallicaConstants;
+import com.sapient.metallica.util.MetallicaUtil;
+import com.sapient.metallica.util.TestData;
 
 @RestController
+@SpringBootApplication
 public class TradeController {
 	
 	@Autowired

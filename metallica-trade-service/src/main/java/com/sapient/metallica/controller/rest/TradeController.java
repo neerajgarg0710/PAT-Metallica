@@ -14,40 +14,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sapient.metallica.beans.Trade;
 import com.sapient.metallica.beans.TradeSearchVO;
 import com.sapient.metallica.beans.TradeVO;
-import com.sapient.metallica.message.TradeService;
 import com.sapient.metallica.repository.TradeRepository;
+import com.sapient.metallica.service.TradeService;
 
 @RestController
 public class TradeController {
-	
+
 	@Autowired
 	private TradeRepository repository;
-	
+
 	@Autowired
 	private TradeService tradeService;
 
-	@RequestMapping(value = "/trades", method = RequestMethod.GET)
+	@RequestMapping(value = "/ping")
+	public String ping() {
+		return "Trade Service is UP and running";
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public Collection<Trade> getAllTrades() {
-		
+
 		return repository.findAll();
 	}
 
-	@RequestMapping(value = "/trades", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public void createTrade(@RequestBody TradeVO dto) {
 
-		
 		if (dto != null) {
 			tradeService.createTrade(dto);
 		}
 	}
 
-	@RequestMapping(value = "/trades/{id}/{status}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/{id}/{status}", method = RequestMethod.PUT)
 	public void udpateTrade(@RequestParam Long id, @RequestParam String status) {
 
-		//TODO:
+		// TODO:
 	}
 
-	@RequestMapping(value = "/trades/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public Collection<Trade> searchTrades(@RequestBody final TradeSearchVO dto) {
 		Collection<Trade> trades = repository.findAll();
 
