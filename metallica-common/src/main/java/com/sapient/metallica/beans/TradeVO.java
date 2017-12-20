@@ -2,6 +2,7 @@ package com.sapient.metallica.beans;
 
 public class TradeVO {
 
+	private Long id;
 	private String date;
 	private String commodity;
 	private String side;
@@ -9,6 +10,14 @@ public class TradeVO {
 	private String location;
 	private int quanity;
 	private Double price;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getDate() {
 		return date;

@@ -10,6 +10,7 @@ public class TradeListener {
 
 	  @RabbitListener(queues="tradeServiceQueue")
 	  public void receive(Trade trade) {
-	   
+	   System.out.println("Created");
+	   // if trade open push to UI
 	  }
 }

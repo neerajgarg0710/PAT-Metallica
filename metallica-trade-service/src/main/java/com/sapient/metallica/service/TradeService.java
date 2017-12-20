@@ -17,22 +17,18 @@ import com.sapient.metallica.util.MetallicaUtil;
 public class TradeService {
 	@Autowired
 	private TradeRepository repository;
-	
-	
-	
+
 	private final RabbitTemplate rabbitTemplate;
-	
+
 	private final TopicExchange exchange;
 
-	  public TradeService(RabbitTemplate rabbitTemplate, TopicExchange exchange) {
-	    this.rabbitTemplate = rabbitTemplate;
-	    this.exchange = exchange;
-	  }
-
-	 
+	public TradeService(RabbitTemplate rabbitTemplate, TopicExchange exchange) {
+		this.rabbitTemplate = rabbitTemplate;
+		this.exchange = exchange;
+	}
 
 	public void createTrade(TradeVO dto) {
-	   	    
+
 		Trade trade = new Trade();
 		trade.setCommodity(new Commodity(dto.getCommodity()));
 		trade.setCounterParty(new CounterParty(dto.getCounterParty()));
@@ -42,9 +38,16 @@ public class TradeService {
 		trade.setSide(Side.valueOf(dto.getSide()));
 		trade.setTradeDate(MetallicaUtil.parseDate(dto.getDate(), MetallicaConstants.DD_MM_YY));
 		repository.save(trade);
+
+		String routingKey = "trade.created";
+		rabbitTemplate.convertAndSend(exchange.getName(), routingKey, trade);
+	}
+	
+	public void updateTrade(TradeVO dto) {
 		
-		String routingKey = "trade.created";	   
-	    rabbitTemplate.convertAndSend(exchange.getName(), routingKey, trade);
-	  }
+		Trade trade = repository.findOne(dto.getId());
+		String routingKey = "trade.modified";
+		rabbitTemplate.convertAndSend(exchange.getName(), routingKey, trade);
+	}
 
 }

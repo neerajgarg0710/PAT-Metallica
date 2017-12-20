@@ -31,7 +31,7 @@ public class TradeServiceConfig {
 	
 	  @Bean
 	  public Queue queue() {
-	    return new Queue("tradeQueue");
+	    return new Queue("tradeServiceQueue");
 	  }
 
 	  @Bean

@@ -16,7 +16,7 @@ import com.sapient.metallica.listener.TradeListener;
 @Configuration
 public class EventConfig implements RabbitListenerConfigurer {
 
-	@Bean
+	/*@Bean
 	public TopicExchange eventExchange() {
 		return new TopicExchange("metallicaExchange");
 	}
@@ -29,7 +29,7 @@ public class EventConfig implements RabbitListenerConfigurer {
 	@Bean
 	public Binding binding(Queue queue, TopicExchange eventExchange) {
 		return BindingBuilder.bind(queue).to(eventExchange).with("trade.*");
-	}
+	}*/
 
 	@Bean
 	public TradeListener eventReceiver() {
