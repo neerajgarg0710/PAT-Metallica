@@ -39,15 +39,19 @@ public class TradeService {
 		trade.setTradeDate(MetallicaUtil.parseDate(dto.getDate(), MetallicaConstants.DD_MM_YY));
 		repository.save(trade);
 
-		String routingKey = "trade.created";
-		rabbitTemplate.convertAndSend(exchange.getName(), routingKey, trade);
+		rabbitTemplate.convertAndSend(exchange.getName(), MetallicaConstants.TRADE_CREATED, trade.getTradeId());
 	}
-	
+
 	public void updateTrade(TradeVO dto) {
-		
+
 		Trade trade = repository.findOne(dto.getId());
-		String routingKey = "trade.modified";
-		rabbitTemplate.convertAndSend(exchange.getName(), routingKey, trade);
+		rabbitTemplate.convertAndSend(exchange.getName(), MetallicaConstants.TRADE_UPDATED, trade.getTradeId());
+	}
+
+	public void deleteTrade(TradeVO dto) {
+
+		repository.delete(dto.getId());
+		rabbitTemplate.convertAndSend(exchange.getName(), MetallicaConstants.TRADE_DELETED, dto.getId());
 	}
 
 }
